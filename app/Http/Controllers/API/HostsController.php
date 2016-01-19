@@ -4,7 +4,7 @@ use App\Host;
 use App\APIObjects\Host as HostAPIObject;
 use App\Http\Controllers\Controller;
 
-class HostController extends Controller {
+class HostsController extends Controller {
 
 	public function index()
 	{

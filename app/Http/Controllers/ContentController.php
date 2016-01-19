@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-class HostsController extends Controller {
+class ContentController extends Controller {
 
 
 	public function home()

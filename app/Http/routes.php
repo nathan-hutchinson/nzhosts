@@ -28,7 +28,7 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
 
-    Route::get('/', 'HostsController@home');
+    Route::get('/', 'ContentController@home');
 
 
 
@@ -36,6 +36,6 @@ Route::group(['middleware' => ['web']], function () {
 
 
 Route::group(['middleware' => 'api', 'namespace' => 'API', 'prefix' => 'api'], function() {
-    Route::resource('host', 'HostController');
+    Route::resource('hosts', 'HostsController');
 
 });
