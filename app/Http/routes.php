@@ -36,6 +36,10 @@ Route::group(['middleware' => ['web']], function () {
 
 
 Route::group(['middleware' => 'api', 'namespace' => 'API', 'prefix' => 'api'], function() {
+
+    Route::get('hosts/{hosts}/products', 'HostsController@products');
+
     Route::resource('hosts', 'HostsController');
 
+    Route::get('categories', 'CategoriesController@index');
 });

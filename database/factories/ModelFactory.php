@@ -27,3 +27,25 @@ $factory->define(App\Host::class, function (Faker\Generator $faker) {
         'website' => $faker->url,
     ];
 });
+
+$factory->define(App\Category::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+    ];
+});
+
+$factory->define(App\Product::class, function (Faker\Generator $faker) {
+    return [
+        'category_id' => factory(App\Category::class)->create()->id,
+        'host_id' => factory(App\Host::class)->create()->id,
+        'name' => $faker->name,
+        'disk' => $faker->randomNumber(),
+        'memory' => $faker->randomNumber(),
+        'cpu' => $faker->randomNumber(),
+        'bandwidth' => $faker->randomNumber(),
+        'websites' => $faker->randomNumber(),
+        'managed' => $faker->boolean(),
+        'website' => $faker->url,
+    ];
+});
+
