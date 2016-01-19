@@ -30,4 +30,12 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/', 'HostsController@home');
 
+
+
+});
+
+
+Route::group(['middleware' => 'api', 'namespace' => 'API', 'prefix' => 'api'], function() {
+    Route::resource('host', 'HostController');
+
 });

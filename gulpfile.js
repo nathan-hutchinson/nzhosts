@@ -18,4 +18,6 @@ elixir(function(mix) {
 
     mix.browserify('main.js');
 
+    mix.phpUnit();
+
 });

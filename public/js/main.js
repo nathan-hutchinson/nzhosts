@@ -9807,7 +9807,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "C:\\Users\\nathm\\Documents\\php\\nzhosts\\resources\\assets\\js\\components\\alert.vue"
+  var id = "/home/vagrant/code/nzhosts/resources/assets/js/components/alert.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache[".alert {\n  background-color: #d3d3d3;\n  border: 1px solid #808080;\n  padding: 1em;\n  position: relative;\n}\n.alert--success {\n  background-color: #90ee90;\n  border: 1px solid #008000;\n}\n.alert--error {\n  background-color: #ffb3b3;\n  border: 1px solid #f00;\n}\n.alert__close {\n  position: absolute;\n  cursor: pointer;\n  top: 1em;\n  right: 1em;\n}\n"] = false
     document.head.removeChild(__vueify_style__)
