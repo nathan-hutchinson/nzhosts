@@ -27,6 +27,7 @@ class Host implements Arrayable, Jsonable {
 	public function toArray()
 	{
 		return [
+			'id' => $this->host->id,
 			'name' => $this->host->name,
 			'website' => $this->host->website,
 		];

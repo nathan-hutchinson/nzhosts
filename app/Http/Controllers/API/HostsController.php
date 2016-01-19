@@ -12,4 +12,14 @@ class HostsController extends Controller {
 			return new HostAPIObject($host);
 		});
 	}
+
+	public function show(Host $host)
+	{
+		return new HostAPIObject($host);
+	}
+
+	public function products()
+	{
+
+	}
 }
