@@ -16,12 +16,14 @@ class HostAPITest extends TestCase {
 
 		$this->get('/api/hosts')
 			->seeJson([
-				'name'    => $host->name,
-				'website' => $host->website
+				'name'        => $host->name,
+				'description' => $host->description,
+				'website'     => $host->website
 			])
 			->seeJson([
-				'name'    => $host2->name,
-				'website' => $host2->website
+				'name'        => $host2->name,
+				'description' => $host2->description,
+				'website'     => $host2->website
 			]);
 	}
 
@@ -32,8 +34,9 @@ class HostAPITest extends TestCase {
 
 		$this->get('/api/hosts/' . $host->id)
 			->seeJson([
-				'name'    => $host->name,
-				'website' => $host->website
+				'name'        => $host->name,
+				'description' => $host->description,
+				'website'     => $host->website
 			]);
 	}
 
