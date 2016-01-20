@@ -65,10 +65,12 @@
                         this.contactForm.name = "";
                         this.contactForm.email = "";
                         this.contactForm.message = "";
+                        this.submittingForm = false;
 
                         this.$route.router.go('/contact/send');
                     }
                     else {
+                        this.submittingForm = false;
                         this.$route.router.go('/contact/error');
                     }
 
