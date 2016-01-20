@@ -23,17 +23,7 @@
 <body>
 <div class="container">
     <div class="content" id="app">
-        @{{ showAlert }}
-        <div class="title">Laravel 5</div>
 
-        <alert type="success">Your account has been updated!</alert>
-        <div v-show="showAlert">
-            Hello!
-            <alert v-show="showAlert">Your account has been updated!</alert>
-
-        </div>
-
-        <alert type="error">Your account has not been updated!</alert>
     </div>
 </div>
 

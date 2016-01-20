@@ -1,8 +1,7 @@
 @extends('templates.layout')
 
 @section('content')
-    <div class="page-header">
-        <h1>Sticky footer with fixed navbar</h1>
+    <div id="app">
+        <router-view :hosts="hosts" :pageTitle.sync="pageTitle"></router-view>
     </div>
-    <p class="lead">Paragraph main!</p>
 @endsection

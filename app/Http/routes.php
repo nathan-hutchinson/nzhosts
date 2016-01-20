@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function ()
+{
+	return view('welcome');
 });
 
 /*
@@ -26,20 +27,22 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
+Route::group(['middleware' => 'api', 'namespace' => 'API', 'prefix' => 'api'], function ()
+{
+	Route::get('hosts/{hosts}/products', 'HostsController@products');
+	Route::resource('hosts', 'HostsController');
 
-    Route::get('/', 'ContentController@home');
+	Route::get('categories', 'CategoriesController@index');
 
-
-
+	Route::get('contact/honey', 'ContactController@honeypot');
+	Route::post('contact/send', 'ContactController@send');
 });
 
+Route::group(['middleware' => ['web']], function ()
+{
 
-Route::group(['middleware' => 'api', 'namespace' => 'API', 'prefix' => 'api'], function() {
+	Route::get('/', 'ContentController@home');
 
-    Route::get('hosts/{hosts}/products', 'HostsController@products');
+	Route::get('/{vue_capture?}', 'ContentController@home')->where('vue_capture', '[\/\w\.-]*');
 
-    Route::resource('hosts', 'HostsController');
-
-    Route::get('categories', 'CategoriesController@index');
 });
