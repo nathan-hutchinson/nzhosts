@@ -9,10 +9,21 @@ class HostsController extends Controller {
 
 	public function index()
 	{
-		return Host::get()->map(function ($host)
+		$hosts = Host::paginate(10);
+
+		$data = $hosts->map(function ($host)
 		{
 			return new HostAPIObject($host);
 		});
+
+		$pagination = $hosts->toArray();
+
+		unset($pagination['data']);
+
+		return [
+			'pagination' => $pagination,
+			'data'       => $data
+		];
 	}
 
 	public function show(Host $host)

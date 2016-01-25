@@ -13478,20 +13478,45 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"vue":12,"vue-hot-reload-api":2}],17:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = {
-    props: {
-        hosts: {
-            sync: true
+    data: function data() {
+        return {
+            hosts: [],
+            pagination: {
+                page: 1,
+                previous: false,
+                next: false
+            }
+        };
+    },
+    methods: {
+        fetchHostsPaginate: function fetchHostsPaginate(direction) {
+            if (direction === 'previous') {
+                --this.pagination.page;
+            } else if (direction === 'next') {
+                ++this.pagination.page;
+            }
+
+            this.$http.get('hosts?page=' + this.pagination.page, [], function (data, status, request) {
+                this.hosts = data.data;
+                this.pagination.next = data.pagination.next_page_url;
+                this.pagination.previous = data.pagination.prev_page_url;
+            }).error(function (data, status, request) {
+                console.log('error', data, status);
+            });
         }
+    },
+    ready: function ready() {
+        this.fetchHostsPaginate();
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"col-md-8\">\n    <h1>New Zealand Hosts</h1>\n\n    <p v-show=\"hosts.length==0\">No hosts yet.</p>\n\n    <div class=\"panel panel-default\" v-for=\"host in hosts\">\n        <div class=\"panel-heading\"><a v-link=\"{ name: 'host', params: { hostID: host.id }}\">{{ host.name }}</a></div>\n        <div class=\"panel-body\">\n            {{ host.description }}\n        </div>\n    </div>\n\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"col-md-8\">\n    <h1>New Zealand Hosts</h1>\n\n    <p v-show=\"hosts.length==0\">Hosts loading...</p>\n\n    <div class=\"panel panel-default\" v-for=\"host in hosts\">\n        <div class=\"panel-heading\"><a v-link=\"{ name: 'host', params: { hostID: host.id }}\">{{ host.name }}</a>\n        </div>\n        <div class=\"panel-body\">\n            {{ host.description }}\n        </div>\n    </div>\n\n    <ul class=\"pager\">\n        <li class=\"previous\" v-show=\"pagination.previous\">\n            <a class=\"page-scroll\" @click=\"fetchHostsPaginate('previous')\" href=\"#\">Previous</a>\n        </li>\n        <li class=\"next\" v-show=\"pagination.next\">\n            <a class=\"page-scroll\" @click=\"fetchHostsPaginate('next')\" href=\"#\">Next</a>\n        </li>\n    </ul>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -13677,20 +13702,7 @@ var router = new VueRouter({
     history: true
 });
 
-var App = Vue.extend({
-    data: function data() {
-        return {
-            hosts: []
-        };
-    },
-    ready: function ready() {
-        this.$http.get('hosts/', [], function (data, status, request) {
-            this.hosts = data;
-        }).error(function (data, status, request) {
-            console.log('error', data, status);
-        });
-    }
-});
+var App = Vue.extend({});
 
 router.map({
     '/': {

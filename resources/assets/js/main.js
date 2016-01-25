@@ -13,18 +13,6 @@ var router = new VueRouter({
 });
 
 var App = Vue.extend({
-    data: function () {
-        return {
-            hosts: []
-        };
-    },
-    ready: function () {
-        this.$http.get('hosts/', [], function (data, status, request) {
-            this.hosts = data;
-        }).error(function (data, status, request) {
-            console.log('error', data, status);
-        });
-    }
 });
 
 
