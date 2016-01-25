@@ -56,8 +56,13 @@ router.map({
                 component: require('./components/suggestion-error.vue')
             }
         }
+    },
+    '/host/:hostID': {
+        name: 'host',
+        component: require('./components/host.vue')
     }
 });
+
 
 router.redirect({
     // redirect any not-found route to home

@@ -6,6 +6,13 @@
 
         <p v-show="hosts.length==0">No hosts yet.</p>
 
+        <div class="panel panel-default" v-for="host in hosts">
+            <div class="panel-heading"><a v-link="{ name: 'host', params: { hostID: host.id }}">{{ host.name }}</a></div>
+            <div class="panel-body">
+                {{ host.description }}
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -14,19 +21,6 @@
         props: {
             hosts: {
                 sync: true
-            }
-        },
-        methods: {
-            voteFor: function (topic) {
-                this.$http.post('topics/' + topic.id + '/votes', [], function (data, status, request) {
-                    // New vote
-                    if (status == 200) {
-                        topic.votes++;
-                    }
-                    topic.userVotedFor = true;
-                }).error(function (data, status, request) {
-                    console.log('error', data, status);
-                });
             }
         }
     };

@@ -13478,7 +13478,7 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"vue":12,"vue-hot-reload-api":2}],17:[function(require,module,exports){
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -13488,23 +13488,10 @@ exports.default = {
         hosts: {
             sync: true
         }
-    },
-    methods: {
-        voteFor: function voteFor(topic) {
-            this.$http.post('topics/' + topic.id + '/votes', [], function (data, status, request) {
-                // New vote
-                if (status == 200) {
-                    topic.votes++;
-                }
-                topic.userVotedFor = true;
-            }).error(function (data, status, request) {
-                console.log('error', data, status);
-            });
-        }
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"col-md-8\">\n    <h1>New Zealand Hosts</h1>\n\n    <p v-show=\"hosts.length==0\">No hosts yet.</p>\n\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"col-md-8\">\n    <h1>New Zealand Hosts</h1>\n\n    <p v-show=\"hosts.length==0\">No hosts yet.</p>\n\n    <div class=\"panel panel-default\" v-for=\"host in hosts\">\n        <div class=\"panel-heading\"><a v-link=\"{ name: 'host', params: { hostID: host.id }}\">{{ host.name }}</a></div>\n        <div class=\"panel-body\">\n            {{ host.description }}\n        </div>\n    </div>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -13517,6 +13504,41 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"vue":12,"vue-hot-reload-api":2}],18:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    data: function data() {
+        return {
+            host: {},
+            loaded: false
+        };
+    },
+    ready: function ready() {
+        this.$http.get('hosts/' + this.$route.params.hostID, [], function (data, status, request) {
+            this.host = data;
+            this.loaded = true;
+        }).error(function (data, status, request) {
+            console.log('error', data, status);
+        });
+    }
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"col-md-8\" v-show=\"loaded\">\n    <h1>{{ host.name }}</h1>\n\n    <p>{{ host.description }}</p>\n\n    <p><a v-link=\"{ path: '/' }\">Back to all hosts.</a></p>\n</div>\n\n<div class=\"col-md-8\" v-show=\"!loaded\">\n    Loading...\n</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  var id = "C:\\Users\\nathm\\Documents\\php\\nzhosts\\resources\\assets\\js\\components\\host.vue"
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":12,"vue-hot-reload-api":2}],19:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -13598,7 +13620,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":12,"vue-hot-reload-api":2}],19:[function(require,module,exports){
+},{"vue":12,"vue-hot-reload-api":2}],20:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13618,7 +13640,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":12,"vue-hot-reload-api":2}],20:[function(require,module,exports){
+},{"vue":12,"vue-hot-reload-api":2}],21:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13638,7 +13660,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":12,"vue-hot-reload-api":2}],21:[function(require,module,exports){
+},{"vue":12,"vue-hot-reload-api":2}],22:[function(require,module,exports){
 'use strict';
 
 //browserify entrypoint
@@ -13698,6 +13720,10 @@ router.map({
                 component: require('./components/suggestion-error.vue')
             }
         }
+    },
+    '/host/:hostID': {
+        name: 'host',
+        component: require('./components/host.vue')
     }
 });
 
@@ -13708,6 +13734,6 @@ router.redirect({
 
 router.start(App, 'body');
 
-},{"./components/about.vue":13,"./components/contact-error.vue":14,"./components/contact-sent.vue":15,"./components/contact.vue":16,"./components/home.vue":17,"./components/suggest.vue":18,"./components/suggestion-error.vue":19,"./components/suggestion-sent.vue":20,"vue":12,"vue-resource":4,"vue-router":11}]},{},[21]);
+},{"./components/about.vue":13,"./components/contact-error.vue":14,"./components/contact-sent.vue":15,"./components/contact.vue":16,"./components/home.vue":17,"./components/host.vue":18,"./components/suggest.vue":19,"./components/suggestion-error.vue":20,"./components/suggestion-sent.vue":21,"vue":12,"vue-resource":4,"vue-router":11}]},{},[22]);
 
 //# sourceMappingURL=main.js.map
