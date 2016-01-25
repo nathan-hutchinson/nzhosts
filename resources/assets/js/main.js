@@ -27,6 +27,7 @@ var App = Vue.extend({
     }
 });
 
+
 router.map({
     '/': {
         component: require('./components/home.vue')
@@ -44,9 +45,19 @@ router.map({
                 component: require('./components/contact-error.vue')
             }
         }
+    },
+    '/suggest': {
+        component: require('./components/suggest.vue'),
+        subRoutes: {
+            '/send': {
+                component: require('./components/suggestion-sent.vue')
+            },
+            '/error': {
+                component: require('./components/suggestion-error.vue')
+            }
+        }
     }
 });
-
 
 router.redirect({
     // redirect any not-found route to home

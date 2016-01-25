@@ -36,6 +36,9 @@ Route::group(['middleware' => 'api', 'namespace' => 'API', 'prefix' => 'api'], f
 
 	Route::get('contact/honey', 'ContactController@honeypot');
 	Route::post('contact/send', 'ContactController@send');
+
+	Route::get('suggest/honey', 'SuggestionController@honeypot');
+	Route::post('suggest/send', 'SuggestionController@send');
 });
 
 Route::group(['middleware' => ['web']], function ()
