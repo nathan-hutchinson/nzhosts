@@ -65,13 +65,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
 <script src="/js/main.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#navbar li a").click(function(event) {
-            // check if window is small enough so dropdown is created
-            $("#navbar").removeClass("in").addClass("collapse");
-        });
-    });
-</script>
+<script src="/js/custom.js"></script>
 </body>
 </html>

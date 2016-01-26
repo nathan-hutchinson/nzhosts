@@ -16,7 +16,8 @@ require('laravel-elixir-vueify');
 elixir(function(mix) {
     mix
         .sass('app.scss')
-        .browserify('main.js');
+        .browserify('main.js')
+        .scripts(['custom.js'], 'public/js/custom.js');
 
     mix.phpUnit();
 
